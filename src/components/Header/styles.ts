@@ -5,13 +5,13 @@ interface ContainerProps {
 }
 
 export const Container = styled.div<ContainerProps>`
-  background: #5636d3;
+  background: #2c0735;
   padding: 30px 0;
 
   header {
     width: 1120px;
     margin: 0 auto;
-    padding: ${({ size }) => (size === 'small' ? '0 20px ' : '0 20px 150px')};
+    padding: ${({ size }) => (size === 'small' ? '0 20px ' : '0 20px 100px')};
     display: flex;
     align-items: center;
     justify-content: space-between;

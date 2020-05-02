@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { shade } from 'polished';
 
 interface CardProps {
   total?: boolean;
@@ -20,11 +21,11 @@ export const CardContainer = styled.section`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 32px;
-  margin-top: -150px;
+  margin-top: -110px;
 `;
 
 export const Card = styled.div`
-  background: ${({ total }: CardProps): string => (total ? '#FF872C' : '#fff')};
+  background: ${({ total }: CardProps): string => (total ? '#724cec' : '#fff')};
   padding: 22px 32px;
   border-radius: 5px;
   color: ${({ total }: CardProps): string => (total ? '#fff' : '#363F5F')};
@@ -76,11 +77,11 @@ export const TableContainer = styled.section`
       }
 
       &.income {
-        color: #12a454;
+        color: #2dd881;
       }
 
       &.outcome {
-        color: #e83f5b;
+        color: #ef476f;
       }
     }
 
