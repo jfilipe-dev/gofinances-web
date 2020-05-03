@@ -1,3 +1,4 @@
+/* eslint-disable no-await-in-loop */
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
@@ -22,20 +23,34 @@ const Import: React.FC = () => {
   const [uploadedFiles, setUploadedFiles] = useState<FileProps[]>([]);
   const history = useHistory();
 
+  const filesLenght = uploadedFiles.length;
+
   async function handleUpload(): Promise<void> {
-    // const data = new FormData();
+    const data = new FormData();
 
-    // TODO
+    for (let i = 0; i < filesLenght; i += 1) {
+      data.append('file', uploadedFiles[i].file);
 
-    try {
-      // await api.post('/transactions/import', data);
-    } catch (err) {
-      // console.log(err.response.error);
+      try {
+        await api.post('/transactions/import', data);
+      } catch (err) {
+        console.log(err.response.error);
+      }
+
+      data.delete('file');
     }
+
+    history.push('/');
   }
 
   function submitFile(files: File[]): void {
-    // TODO
+    const importedFiles: FileProps[] = files.map(file => ({
+      file,
+      name: file.name,
+      readableSize: filesize(file.size, { output: 'string' }),
+    }));
+
+    setUploadedFiles([...uploadedFiles, ...importedFiles]);
   }
 
   return (

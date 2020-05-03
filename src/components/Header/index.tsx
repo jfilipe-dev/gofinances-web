@@ -13,11 +13,26 @@ interface HeaderProps {
 const Header: React.FC<HeaderProps> = ({ size = 'large' }: HeaderProps) => (
   <Container size={size}>
     <header>
-      <img src={Logo} alt="GoFinances" />
+      <Link to="/">
+        <img src={Logo} alt="GoFinances" />
+      </Link>
       <nav>
-        {
-          // Todo
-        }
+        <Link
+          to="/"
+          className={
+            window.location.pathname.localeCompare('/') ? '' : 'active'
+          }
+        >
+          Listagem
+        </Link>
+        <Link
+          to="/import"
+          className={
+            window.location.pathname.localeCompare('/import') ? '' : 'active'
+          }
+        >
+          Importar
+        </Link>
       </nav>
     </header>
   </Container>
