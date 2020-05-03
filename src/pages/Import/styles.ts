@@ -52,5 +52,11 @@ export const Footer = styled.section`
     &:hover {
       background: ${shade(0.2, '#5465FF')};
     }
+
+    &[disabled] {
+      cursor: not-allowed;
+      opacity: 0.5;
+      background: ${shade(0.2, '#5465FF')};
+    }
   }
 `;

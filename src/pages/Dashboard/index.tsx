@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { format, parseISO } from 'date-fns';
 import pt from 'date-fns/locale/pt-BR';
 
@@ -12,7 +13,13 @@ import Header from '../../components/Header';
 
 import formatValue from '../../utils/formatValue';
 
-import { Container, CardContainer, Card, TableContainer } from './styles';
+import {
+  Container,
+  CardContainer,
+  Card,
+  TableContainer,
+  NoTransactions,
+} from './styles';
 
 interface Transaction {
   id: string;
@@ -95,33 +102,41 @@ const Dashboard: React.FC = () => {
           </Card>
         </CardContainer>
 
-        <TableContainer>
-          <table>
-            <thead>
-              <tr>
-                <th>Título</th>
-                <th>Preço</th>
-                <th>Categoria</th>
-                <th>Data</th>
-              </tr>
-            </thead>
-
-            <tbody>
-              {transactions.map(transaction => (
-                <tr key={transaction.id}>
-                  <td className="title">{transaction.title}</td>
-                  <td className={transaction.type}>
-                    {transaction.type === 'outcome'
-                      ? `- ${transaction.formattedValue}`
-                      : `${transaction.formattedValue}`}
-                  </td>
-                  <td>{transaction.category.title}</td>
-                  <td>{transaction.formattedDate}</td>
+        {transactions.length > 0 ? (
+          <TableContainer>
+            <table>
+              <thead>
+                <tr>
+                  <th>Título</th>
+                  <th>Preço</th>
+                  <th>Categoria</th>
+                  <th>Data</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
-        </TableContainer>
+              </thead>
+
+              <tbody>
+                {transactions.map(transaction => (
+                  <tr key={transaction.id}>
+                    <td className="title">{transaction.title}</td>
+                    <td className={transaction.type}>
+                      {transaction.type === 'outcome'
+                        ? `- ${transaction.formattedValue}`
+                        : `${transaction.formattedValue}`}
+                    </td>
+                    <td>{transaction.category.title}</td>
+                    <td>{transaction.formattedDate}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </TableContainer>
+        ) : (
+          <NoTransactions>
+            <h1>Ops...</h1>
+            <p>Você ainda não possui transações.</p>
+            <Link to="/import">Importar transações</Link>
+          </NoTransactions>
+        )}
       </Container>
     </>
   );

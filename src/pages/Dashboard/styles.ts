@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { shade } from 'polished';
 
 interface CardProps {
   total?: boolean;
@@ -22,9 +21,27 @@ export const CardContainer = styled.section`
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 32px;
   margin-top: -110px;
+
+  @media (max-width: 780px) {
+    grid-template-columns: repeat(1, 1fr);
+    padding: 0 30px;
+  }
 `;
 
 export const Card = styled.div`
+  @media (max-width: 780px) {
+    &:hover {
+      transform: translateX(20px);
+    }
+  }
+
+  @media (min-width: 780px) {
+    &:hover {
+      transform: translateY(-20px);
+    }
+  }
+
+  transition: all 0.2s;
   background: ${({ total }: CardProps): string => (total ? '#5465FF' : '#fff')};
   padding: 22px 32px;
   border-radius: 5px;
@@ -92,5 +109,29 @@ export const TableContainer = styled.section`
     td:last-child {
       border-radius: 0 8px 8px 0;
     }
+  }
+`;
+
+export const NoTransactions = styled.div`
+  margin-top: 162px;
+
+  @media (max-width: 780px) {
+    margin-top: 64px;
+  }
+  text-align: center;
+  color: #969cb3;
+
+  h1 {
+    font-size: 26px;
+  }
+
+  p {
+    font-size: 20px;
+  }
+
+  a {
+    color: #5465ff;
+    text-decoration: none;
+    font-size: 14px;
   }
 `;

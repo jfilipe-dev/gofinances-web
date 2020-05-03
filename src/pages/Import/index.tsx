@@ -67,7 +67,11 @@ const Import: React.FC = () => {
               <img src={alert} alt="Alert" />
               Permitido apenas arquivos CSV
             </p>
-            <button onClick={handleUpload} type="button">
+            <button
+              onClick={handleUpload}
+              type="button"
+              disabled={uploadedFiles.length < 1}
+            >
               Enviar
             </button>
           </Footer>
