@@ -1,5 +1,5 @@
 # Gofinances web
-#### An application to manage transactions
+#### An application to manage transactions.
 
 ### 📺 Preview
 ![preview-gofinances](https://user-images.githubusercontent.com/55659197/80908328-6229bc80-8cf5-11ea-800e-4325685b4db2.gif)
